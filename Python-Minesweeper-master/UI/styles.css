@@ -1,0 +1,394 @@
+@font-face {
+  font-family: Sacramento;
+  src: url("fonts/Sacramento.ttf");
+}
+@font-face {
+  font-family: IndieFlower;
+  src: url("fonts/IndieFlower.ttf");
+}
+.pink {
+  --background: #f875aa;
+  --textColor: #353535;
+  --lostColor: #ff0040;
+  --wonColor: #6effa1;
+  --bgEmpty: #f1d1d0;
+  --bgSelected: #fbaccc;
+  --bgSelectedIn: #ffb7d4;
+  --bgBomb: #f875aa;
+  --btnBg: #fbaccc;
+  --btnBgHover: #f1d1d0;
+  --btn: #353535;
+  --btnHover: #353535;
+  --scrollColor: #fbaccc;
+  --creditHover: #f1d1d0;
+}
+.green {
+  --background: #00ad7c;
+  --textColor: #353535;
+  --lostColor: #fff8b5;
+  --wonColor: #b5ff7d;
+  --bgEmpty: #fff8b5;
+  --bgSelected: #b5ff7d;
+  --bgSelectedIn: #c3ff94;
+  --bgBomb: #00ad7c;
+  --btnBg: #6effa1;
+  --btnBgHover: #b5ff7d;
+  --btn: #353535;
+  --btnHover: #353535;
+  --scrollColor: #6effa1;
+  --creditHover: #b5ff7d;
+}
+.dark {
+  --background: #696969;
+  --textColor: #cfcfcf;
+  --lostColor: #ff2b60;
+  --wonColor: #6effa1;
+  --bgEmpty: #222831;
+  --bgSelected: #00adb5;
+  --bgSelectedIn: #089aa1;
+  --bgBomb: #696969;
+  --btnBg: #393e46;
+  --btnBgHover: #00adb5;
+  --btn: #eeeeee;
+  --btnHover: #353535;
+  --scrollColor: #393e46;
+  --creditHover: #00adb5;
+}
+.red {
+  --background: #4c535c;
+  --textColor: #d3d6db;
+  --lostColor: #be3144;
+  --wonColor: #6effa1;
+  --bgEmpty: #d3d6db;
+  --bgSelected: #be3144;
+  --bgSelectedIn: #db5163;
+  --bgBomb: #4c535c;
+  --btnBg: #3a4750;
+  --btnBgHover: #be3144;
+  --btn: #eeeeee;
+  --btnHover: #eeeeee;
+  --scrollColor: #393e46;
+  --creditHover: #be3144;
+}
+.yellow {
+  --background: #1a2634;
+  --textColor: #203e5f;
+  --lostColor: #db5163;
+  --wonColor: #6effa1;
+  --bgEmpty: #203e5f;
+  --bgSelected: #eec550;
+  --bgSelectedIn: #f9e3a3;
+  --bgBomb: #1a2634;
+  --btnBg: #203e5f;
+  --btnBgHover: #eec550;
+  --btn: #eec550;
+  --btnHover: #203e5f;
+  --scrollColor: #393e46;
+  --creditHover: #eec550;
+}
+.armin {
+  --background: #483d3c;
+  --textColor: #f9ebc4;
+  --lostColor: #db5163;
+  --wonColor: #6effa1;
+  --bgEmpty: #a7cf5d;
+  --bgSelected: #a97555;
+  --bgSelectedIn: #be9074;
+  --bgBomb: #483d3c;
+  --btnBg: #a97555;
+  --btnBgHover: #a7cf5d;
+  --btn: #f9ebc4;
+  --btnHover: #f9ebc4;
+  --scrollColor: #a97555;
+  --creditHover: #a7cf5d;
+}
+.brown {
+  --background: #837d7d;
+  --textColor: #52575d;
+  --lostColor: #db5163;
+  --wonColor: #6effa1;
+  --bgEmpty: #aaa6a4;
+  --bgSelected: #f1f4c6;
+  --bgSelectedIn: #dfd8c8;
+  --bgBomb: #837d7d;
+  --btnBg: #dfd8c8;
+  --btnBgHover: #52575d;
+  --btn: #52575d;
+  --btnHover: #dfd8c8;
+  --scrollColor: #52575d;
+  --creditHover: #dfd8c8;
+}
+body {
+  background-color: var(--background);
+  user-select: none;
+  margin: 0;
+  padding: 1rem 1rem 2rem;
+}
+
+.board {
+  text-align: center;
+  background-color: var(--background);
+  overflow: hidden;
+  margin: 0 auto;
+}
+h1 {
+  font-family: "IndieFlower";
+  color: var(--textColor);
+  text-align: center;
+}
+
+.lost {
+  color: var(--lostColor);
+}
+.won {
+  color: var(--wonColor);
+}
+.cell {
+  color: var(--textColor);
+  font-family: "Sacramento", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  width: 3rem;
+  height: 3rem;
+  outline: none;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+  border: 0.2rem solid var(--background);
+  margin: 0rem;
+  background-color: var(--bgEmpty);
+  border-radius: 0.5rem;
+}
+br {
+  line-height: 0;
+}
+.on {
+  background-color: var(--bgSelectedIn) !important;
+  background-image: none !important;
+}
+.number {
+  background-color: var(--bgSelected) !important;
+  background-image: none !important;
+}
+
+.empty {
+  background-color: var(--bgEmpty);
+  transition-duration: 0.2s;
+}
+.empty:hover,
+.empty:focus {
+  transition-duration: 0.2s;
+  transform: scale(1.1);
+  /* border-radius: 0rem; */
+}
+
+.bomb {
+  background-image: url("images/bomb.png");
+  background-size: 100%;
+  background-color: var(--bgBomb) !important;
+}
+.flagged {
+  background-image: url("images/flag.png");
+  background-size: 100%;
+  background-color: var(--bgBomb);
+}
+
+.animation {
+  transform: scale(0.7) !important;
+}
+
+.zoomOut {
+  zoom: 70%;
+}
+.hud {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1rem auto;
+  max-width: 75rem;
+}
+.panel {
+  background-color: var(--btnBg);
+  border-radius: 1rem;
+  padding: 1rem 1.2rem;
+  min-width: 18rem;
+  max-width: 30rem;
+  box-shadow: 0 0.5rem 1.2rem #00000020;
+}
+.panel h3 {
+  margin: 0 0 0.6rem;
+  color: var(--textColor);
+  font-family: "IndieFlower", sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.panelText {
+  color: var(--textColor);
+  font-family: "IndieFlower", sans-serif;
+  font-size: 1.1rem;
+  margin: 0.4rem 0;
+}
+.btnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+}
+
+.button {
+  font-family: "IndieFlower", sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  background-color: var(--btnBg);
+  color: var(--btn);
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+.button:hover,
+.button:focus {
+  background-color: var(--btnBgHover);
+  color: var(--btnHover);
+  transform: scale(1.1);
+  transition-duration: 0.4s;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  cursor: auto;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #0000;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: var(--scrollColor);
+}
+
+/* {
+  font-family: "IndieFlower", sans-serif;
+  font-size: 1.2rem;
+} */
+h4 {
+  color: var(--lines);
+  text-align: center;
+  font-family: "IndieFlower", sans-serif;
+  margin-bottom: 0.5rem;
+}
+.aTag {
+  font-family: "IndieFlower", sans-serif;
+  font-size: 1.3rem;
+  color: var(--textColor);
+  text-decoration: none;
+  transition-duration: 0.5s;
+  display: inline;
+  background-color: #0000;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.aTag:hover {
+  color: var(--creditHover);
+  transition-duration: 0.5s;
+}
+
+.themes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+}
+.theme {
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  background-color: var(--btnBg);
+  color: var(--btn);
+  padding: 0.5rem 2rem;
+  margin: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+.pinkT {
+  background-color: #fbaccc;
+}
+.pinkT:hover {
+  background-color: #f1d1d0;
+}
+
+.greenT {
+  background-color: #6effa1;
+}
+.greenT:hover {
+  background-color: #a3ffc3;
+}
+
+.yellowT {
+  background-color: #eec550;
+}
+.yellowT:hover {
+  background-color: #ffda73;
+}
+
+.darkT {
+  background-color: #00adb5;
+}
+.darkT:hover {
+  background-color: #00cdd8;
+}
+
+.redT {
+  background-color: #be3144;
+}
+.redT:hover {
+  background-color: #e74056;
+}
+
+.arminT {
+  background-color: #a97555;
+}
+.arminT:hover {
+  background-color: #be9074;
+}
+
+.brownT {
+  background-color: #f1f4c6;
+}
+.brownT:hover {
+  background-color: #f3f5dd;
+}
+
+@media (max-width: 700px) {
+  body {
+    padding: 0.75rem 0.5rem 1.5rem;
+  }
+
+  .cell {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.6rem;
+  }
+
+  .button {
+    margin: 0.3rem;
+  }
+
+  .theme {
+    padding: 0.5rem 1.3rem;
+  }
+}

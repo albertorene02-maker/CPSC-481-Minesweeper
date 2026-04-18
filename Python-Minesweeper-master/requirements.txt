@@ -1,0 +1,2 @@
+eel==0.14.0
+setuptools>=65
