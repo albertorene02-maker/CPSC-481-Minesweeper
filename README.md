@@ -15,7 +15,7 @@ python -m pip install --force-reinstall eel==0.14.0
 python -c "import pkg_resources; import eel; print('eel import worked')"
 python minesweeperGUI.py
 ```
-Browser will open to game, you can set difficulty, or classic game mode vs adversarial adgent mode.
+Browser will open to game, you can set difficulty, and game mode (Classic or adversarial mode).
 
 ## Team
 
